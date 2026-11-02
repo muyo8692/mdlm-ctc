@@ -81,7 +81,7 @@ Evaluation harnesses (Arena-Hard-Auto, MT-Bench, WildBench, Creative-Writing-Ben
 @inproceedings{ye2026reconsidering,
   title     = {Reconsidering Positional Supervision in Masked Diffusion Language Model Training},
   author    = {Ye, Mengyu and Kudo, Keito and Takahashi, Ryosuke and Suzuki, Jun},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  booktitle = {40th Conference on Neural Information Processing Systems (NeurIPS 2026)},
   year      = {2026}
 }
 ```
