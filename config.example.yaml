@@ -1,0 +1,48 @@
+# Top-level configuration for diffusion-ctc.
+#
+# Copy this file to `config.yaml` (which is gitignored) and fill in the values
+# you need. Anything left as `null` falls back to the corresponding environment
+# variable (see `.env.example`) or to a sensible default.
+
+models:
+  # Hugging Face repo IDs for the two backbones. These are the public weights
+  # from the LLaDA and LLaDA-MoE authors.
+  llada: "GSAI-ML/LLaDA-8B-Instruct"
+  llada_moe: "inclusionAI/LLaDA-MoE-7B-A1B-Instruct"
+  # Optional local checkpoint paths. If set, take precedence over the HF repo
+  # above. Useful for loading a fine-tuned checkpoint produced by this repo.
+  llada_local: null
+  llada_moe_local: null
+
+datasets:
+  # Source dataset for preprocessing (Magpie-Pro filtered).
+  source_magpie: "Magpie-Align/Magpie-Pro-300K-Filtered"
+  # Vanilla SFT data (instruction/response pairs).
+  sft_vanilla: "GAIR/lima"
+  # Magpie-Pro [512, 1024] subsets used in the paper, as released on the Hub.
+  #   sft_baseline_*  - raw instruction, no slack-priming system prompt
+  #                     (preprocess with --noslack-priming). Consumed by the
+  #                     CE-Only baselines; the same text-form split serves
+  #                     both backbones.
+  #   sft_slack_*     - slack-priming system prompt prepended to each
+  #                     instruction (preprocess default), pre-tokenized per
+  #                     backbone. Consumed by Jitter and CE + CTC-S.
+  # Point these at your own namespace if you rebuild them with
+  # scripts/preprocess_magpie{,_moe}.py --push-to-hub.
+  sft_baseline_llada: "muyo/Magpie-Pro-300K-Filtered-512-1024"
+  sft_baseline_moe:   "muyo/Magpie-Pro-300K-Filtered-512-1024"
+  sft_slack_llada:    "muyo/Magpie-Pro-300K-Filtered-CTC-512-1024"
+  sft_slack_moe:      "muyo/Magpie-Pro-300K-Filtered-CTC-512-1024-MoE"
+
+paths:
+  # Where SFT trainers write checkpoints (per-job subdirs are created inside).
+  output_dir: "./checkpoints"
+  # Where run_generate.py writes optional output artifacts.
+  eval_outputs: "./eval_outputs"
+
+api_keys:
+  # Leave null to use environment variables instead. Supported env names:
+  #   HF_TOKEN     - read access to gated HF repos / public datasets
+  #   HF_UP_TOKEN  - write access for `preprocess_magpie*.py --push-to-hub`
+  hf_token: null
+  hf_up_token: null

@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+title: "diffusion-ctc: reference code for Reconsidering Positional Supervision in Masked Diffusion Language Model Training"
+authors:
+  - family-names: Ye
+    given-names: Mengyu
+  - family-names: Kudo
+    given-names: Keito
+  - family-names: Takahashi
+    given-names: Ryosuke
+  - family-names: Suzuki
+    given-names: Jun
+license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "Reconsidering Positional Supervision in Masked Diffusion Language Model Training"
+  authors:
+    - family-names: Ye
+      given-names: Mengyu
+    - family-names: Kudo
+      given-names: Keito
+    - family-names: Takahashi
+      given-names: Ryosuke
+    - family-names: Suzuki
+      given-names: Jun
+  collection-title: "Advances in Neural Information Processing Systems (NeurIPS)"
+  year: 2026

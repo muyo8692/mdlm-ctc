@@ -1,0 +1,37 @@
+[project]
+name = "diffusion-ctc"
+version = "0.1.0"
+description = "CTC-S auxiliary objective and shift-intervention sampler for masked diffusion language models (LLaDA / LLaDA-MoE). Reference code for 'Reconsidering Positional Supervision in Masked Diffusion Language Model Training' (NeurIPS 2026)."
+authors = [
+    { name = "Mengyu Ye" },
+    { name = "Keito Kudo" },
+    { name = "Ryosuke Takahashi" },
+    { name = "Jun Suzuki" },
+]
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "torch>=2.3",
+    "transformers>=4.45",
+    "peft>=0.12",
+    "datasets>=2.20",
+    "accelerate>=0.33",
+    "huggingface-hub>=0.24",
+    "tqdm>=4.66",
+    "fire>=0.6",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+    "wandb>=0.17",
+    "numpy>=1.26",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/diffusion_ctc"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/diffusion_ctc/csrc" = "diffusion_ctc/csrc"
